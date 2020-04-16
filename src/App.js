@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import BarChart from './BarChart'
 import './App.css';
 
 function App() {
+const [data, setData] = useState([25, 40, 150, 75, 40, 55, 89])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <React.Fragment>
+     <BarChart data={data}/>
+     <br />
+     <button onClick={() => setData(data.map(value => value + 5 ))}>Update data</button>
+    <button onClick={() => setData(data.filter(value => value < 35 ))}>filter data</button>
+    <button onClick={() => setData([...data, Math.round(Math.random() * 400)])}>add data</button>
+   </React.Fragment>
   );
 }
 
